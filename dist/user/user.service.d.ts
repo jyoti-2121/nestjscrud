@@ -33,9 +33,9 @@ export declare class UserService {
     findAll(): Promise<(import("mongoose").Document<unknown, {}, userDocument> & Omit<user & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     }, never>)[]>;
-    findOne(id: string): Promise<(import("mongoose").Document<unknown, {}, userDocument> & Omit<user & import("mongoose").Document<any, any, any> & {
+    findOne(id: string): Promise<import("mongoose").Document<unknown, {}, userDocument> & Omit<user & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
-    }, never>)[]>;
+    }, never>>;
     update(id: string, updateUserDto: UpdateUserDto): Promise<import("mongoose").UpdateWriteOpResult>;
     remove(id: string): Promise<import("mongodb").DeleteResult>;
 }

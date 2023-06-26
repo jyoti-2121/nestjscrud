@@ -19,7 +19,7 @@ export class UserService {
     return await this.userModel.find();
   }
   async findOne(id: string) {
-    return await this.userModel.find({_id:id});
+    return await this.userModel.findById(id);
   }
   async update(id: string, updateUserDto: UpdateUserDto) {
     return await this.userModel.updateOne({_id:id},{$set:updateUserDto})

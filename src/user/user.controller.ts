@@ -15,6 +15,7 @@ export class UserController {
 
   @Get('/get')
   findAll() {
+    console.log(process.env.MONGO_URI)
     return this.userService.findAll();
   }
 

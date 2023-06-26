@@ -110,7 +110,7 @@ __decorate([
     __metadata("design:type", Object)
 ], user.prototype, "country_data", void 0);
 exports.user = user = __decorate([
-    (0, mongoose_1.Schema)({ collection: 'user' })
+    (0, mongoose_1.Schema)({ collection: 'user', timestamps: true })
 ], user);
 exports.userSchema = mongoose_1.SchemaFactory.createForClass(user);
 //# sourceMappingURL=user.js.map

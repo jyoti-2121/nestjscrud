@@ -29,7 +29,7 @@ let UserService = exports.UserService = class UserService {
         return await this.userModel.find();
     }
     async findOne(id) {
-        return await this.userModel.find({ _id: id });
+        return await this.userModel.findById(id);
     }
     async update(id, updateUserDto) {
         return await this.userModel.updateOne({ _id: id }, { $set: updateUserDto });

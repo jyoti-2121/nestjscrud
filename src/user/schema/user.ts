@@ -1,10 +1,9 @@
 /* eslint-disable prettier/prettier */
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from "mongoose";
-
 export type userDocument = user & Document;
 
-@Schema({collection: 'user'})
+@Schema({collection: 'user',timestamps: true})
 export class user{
     @Prop({type : String})
     first_name : string;

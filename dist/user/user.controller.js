@@ -25,6 +25,7 @@ let UserController = exports.UserController = class UserController {
         return this.userService.create(createUserDto);
     }
     findAll() {
+        console.log(process.env.MONGO_URI);
         return this.userService.findAll();
     }
     findOne(id) {
