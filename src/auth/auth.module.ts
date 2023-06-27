@@ -3,17 +3,23 @@ import { Module } from '@nestjs/common';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { request,requestSchema } from './schemas/request';
+import { student,studentSchema } from './schemas/student'
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
+import { ConfigModule } from '@nestjs/config';
+import { JwtStrategy } from './jwt.strategy';
 
 @Module({
-  imports:[ 
+  imports: [
+    ConfigModule.forRoot(),
     PassportModule.register({defaultStrategy:'jwt'}),
-    JwtModule.register({secret: process.env.JWT_SECRET, signOptions: {expiresIn: process.env.JWT_EXPIRES}}),
-    MongooseModule.forFeature( [ { name : request.name , schema : requestSchema } ] )
+    JwtModule.register({
+      secret: process.env.JWT_SECRET.toString(), signOptions:{expiresIn:process.env.JWT_EXPIRE.toString()}
+    }),
+    MongooseModule.forFeature( [ { name : student.name , schema : studentSchema } ] )
   ],
   controllers: [AuthController],
-  providers: [AuthService]
+  providers: [AuthService,JwtStrategy],
+  exports:[JwtStrategy,PassportModule]
 })
 export class AuthModule {}

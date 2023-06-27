@@ -14,17 +14,47 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthService = void 0;
 const common_1 = require("@nestjs/common");
-const mongoose_1 = require("@nestjs/mongoose");
-const request_1 = require("./schemas/request");
-const mongoose_2 = require("mongoose");
+const student_1 = require("./schemas/student");
+const mongoose_1 = require("mongoose");
+const mongoose_2 = require("@nestjs/mongoose");
+const bcrypt = require("bcryptjs");
+const jwt_1 = require("@nestjs/jwt");
 let AuthService = exports.AuthService = class AuthService {
-    constructor(requestModel) {
-        this.requestModel = requestModel;
+    constructor(studentModel, jwtService) {
+        this.studentModel = studentModel;
+        this.jwtService = jwtService;
+    }
+    async signup(signupDto) {
+        const { first_name, last_name, phone, is_deleted, email, password } = signupDto;
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const student = await this.studentModel.create({
+            name: first_name + ' ' + last_name,
+            phone,
+            email,
+            is_deleted,
+            password: hashedPassword,
+        });
+        const token = this.jwtService.sign({ id: student._id.toString() });
+        return { token };
+    }
+    async login(loginDto) {
+        const { email, password } = loginDto;
+        const student = await this.studentModel.findOne({ email: email });
+        if (!student) {
+            throw new common_1.UnauthorizedException('Invalid email or password');
+        }
+        const isPasswordMatched = await bcrypt.compare(password, student.password);
+        if (!isPasswordMatched) {
+            throw new common_1.UnauthorizedException('Invalid email or password');
+        }
+        const token = this.jwtService.sign({ id: student._id });
+        return { token };
     }
 };
 exports.AuthService = AuthService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, mongoose_1.InjectModel)(request_1.request.name)),
-    __metadata("design:paramtypes", [mongoose_2.Model])
+    __param(0, (0, mongoose_2.InjectModel)(student_1.student.name)),
+    __metadata("design:paramtypes", [mongoose_1.Model,
+        jwt_1.JwtService])
 ], AuthService);
 //# sourceMappingURL=auth.service.js.map

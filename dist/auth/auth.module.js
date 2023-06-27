@@ -11,20 +11,26 @@ const common_1 = require("@nestjs/common");
 const auth_controller_1 = require("./auth.controller");
 const auth_service_1 = require("./auth.service");
 const mongoose_1 = require("@nestjs/mongoose");
-const request_1 = require("./schemas/request");
+const student_1 = require("./schemas/student");
 const passport_1 = require("@nestjs/passport");
 const jwt_1 = require("@nestjs/jwt");
+const config_1 = require("@nestjs/config");
+const jwt_strategy_1 = require("./jwt.strategy");
 let AuthModule = exports.AuthModule = class AuthModule {
 };
 exports.AuthModule = AuthModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            config_1.ConfigModule.forRoot(),
             passport_1.PassportModule.register({ defaultStrategy: 'jwt' }),
-            jwt_1.JwtModule.register({ secret: process.env.JWT_SECRET, signOptions: { expiresIn: process.env.JWT_EXPIRES } }),
-            mongoose_1.MongooseModule.forFeature([{ name: request_1.request.name, schema: request_1.requestSchema }])
+            jwt_1.JwtModule.register({
+                secret: process.env.JWT_SECRET.toString(), signOptions: { expiresIn: process.env.JWT_EXPIRE.toString() }
+            }),
+            mongoose_1.MongooseModule.forFeature([{ name: student_1.student.name, schema: student_1.studentSchema }])
         ],
         controllers: [auth_controller_1.AuthController],
-        providers: [auth_service_1.AuthService]
+        providers: [auth_service_1.AuthService, jwt_strategy_1.JwtStrategy],
+        exports: [jwt_strategy_1.JwtStrategy, passport_1.PassportModule]
     })
 ], AuthModule);
 //# sourceMappingURL=auth.module.js.map

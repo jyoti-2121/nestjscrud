@@ -1,4 +1,3 @@
-/* eslint-disable prefer-const */
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -15,7 +14,7 @@ export class UserService {
     const model = new this.userModel(createUserDto);
     return await model.save();
   }
-  async findAll() {
+  async findAll() {    
     return await this.userModel.find();
   }
   async findOne(id: string) {

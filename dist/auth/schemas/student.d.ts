@@ -23,25 +23,17 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { Document } from "mongoose";
-export type requestDocument = request & Document;
-export declare class request {
-    location: object;
-    comment_enabled: boolean;
-    country_data: object;
-    avg_donation: number;
-    total_donors: number;
-    total_donation: number;
-    status: string;
-    form_settings: string;
-    form_data: object;
-    user_id: string;
-    active_type: string;
-    category_slug: string;
-    reference_id: string;
-    approve_time: string;
+export type studentDocument = student & Document;
+export declare class student {
+    first_name: string;
+    last_name: string;
+    phone: string;
+    is_deleted: boolean;
+    email: string;
+    password: string;
 }
-export declare const requestSchema: import("mongoose").Schema<request, import("mongoose").Model<request, any, any, any, Document<unknown, any, request> & Omit<request & {
+export declare const studentSchema: import("mongoose").Schema<student, import("mongoose").Model<student, any, any, any, Document<unknown, any, student> & Omit<student & {
     _id: import("mongoose").Types.ObjectId;
-}, never>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, request, Document<unknown, {}, import("mongoose").FlatRecord<request>> & Omit<import("mongoose").FlatRecord<request> & {
+}, never>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, student, Document<unknown, {}, import("mongoose").FlatRecord<student>> & Omit<import("mongoose").FlatRecord<student> & {
     _id: import("mongoose").Types.ObjectId;
 }, never>>;

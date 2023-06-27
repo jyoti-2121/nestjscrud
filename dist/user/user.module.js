@@ -12,11 +12,15 @@ const user_service_1 = require("./user.service");
 const user_controller_1 = require("./user.controller");
 const mongoose_1 = require("@nestjs/mongoose");
 const user_1 = require("./schema/user");
+const auth_module_1 = require("../auth/auth.module");
 let UserModule = exports.UserModule = class UserModule {
 };
 exports.UserModule = UserModule = __decorate([
     (0, common_1.Module)({
-        imports: [mongoose_1.MongooseModule.forFeature([{ name: user_1.user.name, schema: user_1.userSchema }])],
+        imports: [
+            auth_module_1.AuthModule,
+            mongoose_1.MongooseModule.forFeature([{ name: user_1.user.name, schema: user_1.userSchema }])
+        ],
         controllers: [user_controller_1.UserController],
         providers: [user_service_1.UserService]
     })
