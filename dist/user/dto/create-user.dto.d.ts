@@ -24,3 +24,7 @@ export declare class CreateUserDto {
     phone_country_short_name: object;
     country_data: object;
 }
+export declare class testvalidation {
+    name: string;
+    id: number;
+}

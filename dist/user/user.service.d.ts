@@ -22,7 +22,7 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
-import { CreateUserDto } from './dto/create-user.dto';
+import { CreateUserDto, testvalidation } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { user, userDocument } from './schema/user';
 import { Model } from 'mongoose';
@@ -30,6 +30,7 @@ export declare class UserService {
     private userModel;
     constructor(userModel: Model<userDocument>);
     create(createUserDto: CreateUserDto): Promise<user>;
+    pipeVal(testvalidation: testvalidation): Promise<void>;
     findAll(): Promise<(import("mongoose").Document<unknown, {}, userDocument> & Omit<user & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     }, never>)[]>;

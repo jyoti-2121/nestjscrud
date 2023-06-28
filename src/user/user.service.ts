@@ -1,7 +1,6 @@
-/* eslint-disable prefer-const */
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
+import { CreateUserDto, testvalidation } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { user, userDocument } from './schema/user';
 import { Model } from 'mongoose';
@@ -14,6 +13,9 @@ export class UserService {
   async create(createUserDto: CreateUserDto): Promise<user> {
     const model = new this.userModel(createUserDto);
     return await model.save();
+  }
+  async pipeVal(testvalidation: testvalidation){
+    console.log(testvalidation)
   }
   async findAll() {
     return await this.userModel.find();

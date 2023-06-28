@@ -11,6 +11,7 @@ const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
 const mongoose_1 = require("@nestjs/mongoose");
 const user_module_1 = require("./user/user.module");
+const categories_module_1 = require("./categories/categories.module");
 let AppModule = exports.AppModule = class AppModule {
 };
 exports.AppModule = AppModule = __decorate([
@@ -19,7 +20,8 @@ exports.AppModule = AppModule = __decorate([
             config_1.ConfigModule.forRoot(),
             mongoose_1.MongooseModule.forRoot(process.env.MONGO_URI),
             mongoose_1.MongooseModule.forRoot(process.env.MONGO_URI_1),
-            user_module_1.UserModule
+            user_module_1.UserModule,
+            categories_module_1.CategoriesModule
         ],
         controllers: [],
         providers: [],

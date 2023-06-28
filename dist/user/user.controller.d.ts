@@ -24,12 +24,13 @@
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
 import { UserService } from './user.service';
-import { CreateUserDto } from './dto/create-user.dto';
+import { CreateUserDto, testvalidation } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 export declare class UserController {
     private readonly userService;
     constructor(userService: UserService);
     create(createUserDto: CreateUserDto): Promise<import("./schema/user").user>;
+    testglobal(testvalidation: testvalidation): Promise<void>;
     findAll(): Promise<(import("mongoose").Document<unknown, {}, import("./schema/user").userDocument> & Omit<import("./schema/user").user & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     }, never>)[]>;

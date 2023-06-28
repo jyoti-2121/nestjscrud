@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import {IsString,IsNotEmpty,MaxLength,MinLength,IsBoolean,IsEmail} from 'class-validator';
+import {IsString,IsNotEmpty,MaxLength,MinLength,IsBoolean,IsEmail, IsNumber} from 'class-validator';
 export class CreateUserDto {
     @IsString()
     @IsNotEmpty()
@@ -49,4 +49,13 @@ export class CreateUserDto {
     phone_code : object; 
     phone_country_short_name : object;
     country_data : object;
+}
+
+export class testvalidation {
+    @IsString()
+    @IsNotEmpty()
+    name: string;
+    @IsNumber()
+    id:number;
+
 }

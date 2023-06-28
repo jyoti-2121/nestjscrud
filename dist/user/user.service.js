@@ -25,6 +25,9 @@ let UserService = exports.UserService = class UserService {
         const model = new this.userModel(createUserDto);
         return await model.save();
     }
+    async pipeVal(testvalidation) {
+        console.log(testvalidation);
+    }
     async findAll() {
         return await this.userModel.find();
     }

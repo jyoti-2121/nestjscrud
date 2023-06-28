@@ -24,6 +24,9 @@ let UserController = exports.UserController = class UserController {
     create(createUserDto) {
         return this.userService.create(createUserDto);
     }
+    testglobal(testvalidation) {
+        return this.userService.pipeVal(testvalidation);
+    }
     findAll() {
         console.log(process.env.MONGO_URI);
         return this.userService.findAll();
@@ -45,6 +48,13 @@ __decorate([
     __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)("/pipevalidation"),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_user_dto_1.testvalidation]),
+    __metadata("design:returntype", void 0)
+], UserController.prototype, "testglobal", null);
 __decorate([
     (0, common_1.Get)('/get'),
     __metadata("design:type", Function),
